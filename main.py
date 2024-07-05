@@ -4,7 +4,7 @@ from src.data_analyzer import DataAnalyzer
 from src.data_types import DataType
 
 if __name__ == "__main__":
-    # Load the data
+    
     loader=DataLoader("data\weather_classification_data.csv")
     data = loader.load_data()
     print(data)
