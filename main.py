@@ -47,20 +47,21 @@ if __name__ == "__main__":
 
 
     # NEURAL NETWORK MODEL
+    ## Creating the scaler
     print("\n---------- Scaler ----------")  
     data_model_obj = DataModel(data_transformed)
     data_scaler = data_model_obj.scaler()
     print(data_scaler)
 
+    ## Separating the dataset in train and test
     print("\n---------- Train Test Split ----------")  
     train_test_split = data_model_obj.train_test_split()
-
-    #print("\n---------- Neural Network Model ----------")  
-    #data_model_obj.neural_network_model()
     
+    ## Analyzing the accuracy of the model
     print("\n---------- Evaluation ----------")  
     data_model_obj.evaluation_metrics()
 
+    ## Visualizing the Loss Curve
     print("\n---------- Loss Curve ----------")  
     data_model_obj.loss_curve()
 
