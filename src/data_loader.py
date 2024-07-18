@@ -1,5 +1,15 @@
 import pandas as pd
 import logging
+import pickle
+from abc import ABC, abstractmethod
+
+# Adapter
+## interface
+class DataAdapter(ABC):
+    @abstractmethod
+    def load_data(self, file_path):
+        pass
+
 
 
 # Singleton

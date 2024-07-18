@@ -3,6 +3,7 @@ from src.data_processor import DataProcessor
 from src.data_analyzer import DataAnalyzer
 from src.data_model import DataModel
 import pandas as pd
+import pickle
 
 
 if __name__ == "__main__":
