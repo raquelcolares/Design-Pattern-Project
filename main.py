@@ -2,12 +2,13 @@ from src.data_loader import DataLoader
 from src.data_processor import DataProcessor
 from src.data_analyzer import DataAnalyzer
 from src.data_model import DataModel
+import pandas as pd
 
 
 if __name__ == "__main__":
     # Loading the dataset
     print("\n---------- Weather Dataset ----------")
-    loader=DataLoader("data\weather_classification_data.csv")
+    loader = DataLoader("data\weather_classification_data.csv")
     data = loader.load_data()
     print(data.head()) #reading the first 5 rows
 
@@ -64,7 +65,7 @@ if __name__ == "__main__":
     ## Visualizing the Loss Curve
     print("\n---------- Loss Curve ----------")  
     data_model_obj.loss_curve()
+    
 
-    # STREAMLIT VISUALIZATION
 
 
