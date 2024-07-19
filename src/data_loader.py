@@ -2,8 +2,8 @@ import pandas as pd
 import logging
 import pickle
 from abc import ABC, abstractmethod
-from csv_reader import CsvReader
-from json_reader import JsonReader
+from .csv_reader import CsvReader
+from .json_reader import JsonReader
 
 
 # Adapter
@@ -18,18 +18,18 @@ class CsvAdapter(DataAdapter):
     def __init__(self):
         self.csv_reader = CsvReader()
 
-    def load_data(self, file_path: str) -> dict:
+    def load_data(self, file_path: str) -> pd.DataFrame:
         data = self.csv_reader.read_csv_data(file_path)
-        return data
+        return pd.DataFrame(data[1:], columns=data[0])
 
 
 class JsonAdapter(DataAdapter):
     def __init__(self):
         self.json_reader = JsonReader()
 
-    def load_data(self, file_path: str) -> dict:
+    def load_data(self, file_path: str) -> pd.DataFrame:
         data = self.json_reader.read_json_data(file_path)
-        return data
+        return pd.DataFrame(data)
 
 
 # Singleton

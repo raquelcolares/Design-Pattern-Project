@@ -2,10 +2,13 @@ import csv
 
 
 class CsvReader:
-    def read_csv_data(self, file_path: str) -> dict:
-        data = {}
-        with open(file_path, mode="r") as file:
-            csv_reader = csv.DictReader(file)
-            for row in csv_reader:
+    def read_csv_data(self, file_path):
+        """Read CSV data from file path"""
+        data = []
+
+        with open(file_path, newline="", encoding="utf-8") as file:
+            reader = csv.reader(file)
+            for row in reader:
                 data.append(row)
+
         return data
