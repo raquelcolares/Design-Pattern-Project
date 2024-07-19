@@ -1,4 +1,4 @@
-from src.data_loader import DataLoader, CsvAdapter, JsonAdapter
+from src.data_loader import DataLoader, CsvAdapter, JsonAdapter, FileAdapter
 from src.data_processor import DataProcessor
 from src.data_analyzer import DataAnalyzer
 from src.data_model import DataModel
@@ -11,7 +11,7 @@ def csv_to_json(csv_file_path, json_file_path):
     """Converts a CSV file to JSON format."""
     df = pd.read_csv(csv_file_path)
     df.to_json(json_file_path, orient="records")
-    print(f"Arquivo CSV convertido para JSON: {json_file_path}")
+    print(f"CSV file converted to JSON: {json_file_path}")
 
 
 if __name__ == "__main__":
@@ -28,11 +28,11 @@ if __name__ == "__main__":
     data_csv = loader.load_data()
     print(data_csv.head())  # Exibe as 5 primeiras linhas do CSV
 
-    # Converter CSV para JSON
+    # CSV to JSON
     json_file_path = "data/weather_classification_data.json"
     csv_to_json(csv_file_path, json_file_path)
 
-    # Carregar o dataset (JSON)
+    #  (JSON)
     print("\n---------- Weather Dataset (JSON) ----------")
     json_adapter = JsonAdapter()
     reader = DataReader(json_adapter)
@@ -90,3 +90,9 @@ if __name__ == "__main__":
     ## Visualizing the Loss Curve
     print("\n---------- Loss Curve ----------")
     data_model_obj.loss_curve()
+
+    csv_adapter = CsvAdapter()
+    # Change logger adapter to file
+    csv_adapter.logger.adapter = FileAdapter("csv_adapter.log")
+    reader = DataReader(csv_adapter)
+    data = reader.display_data("data/weather_classification_data.csv")
