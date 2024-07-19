@@ -7,5 +7,5 @@ class CsvReader:
         with open(file_path, mode="r") as file:
             csv_reader = csv.DictReader(file)
             for row in csv_reader:
-                data[row["id"]] = row
+                data.append(row)
         return data
