@@ -16,11 +16,6 @@ def csv_to_json(csv_file_path, json_file_path):
 
 if __name__ == "__main__":
 
-    print("\n---------- Weather Dataset ----------")
-    loader = DataLoader("data\weather_classification_data.csv")
-    data = loader.load_data()
-    print(data.head())  # reading the first 5 rows
-
     # Loading the dataset (CSV)
     print("\n---------- Weather Dataset (CSV) ----------")
     csv_file_path = "data/weather_classification_data.csv"
@@ -38,6 +33,12 @@ if __name__ == "__main__":
     reader = DataReader(json_adapter)
     data_json = reader.display_data(json_file_path)
     print(data_json.head())
+
+    csv_adapter = CsvAdapter()
+    # Change logger adapter to file
+    csv_adapter.logger.adapter = FileAdapter("csv_adapter.log")
+    reader = DataReader(csv_adapter)
+    data = reader.display_data("data/weather_classification_data.csv")
 
     # DATA ANALYSIS
     ## Analysing the Descriptive statistics
@@ -90,9 +91,3 @@ if __name__ == "__main__":
     ## Visualizing the Loss Curve
     print("\n---------- Loss Curve ----------")
     data_model_obj.loss_curve()
-
-    csv_adapter = CsvAdapter()
-    # Change logger adapter to file
-    csv_adapter.logger.adapter = FileAdapter("csv_adapter.log")
-    reader = DataReader(csv_adapter)
-    data = reader.display_data("data/weather_classification_data.csv")
