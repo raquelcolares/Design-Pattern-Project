@@ -1,4 +1,5 @@
 from src.data_loader import DataAdapter
+import pandas as pd
 
 
 class DataReader:
@@ -7,4 +8,9 @@ class DataReader:
 
     def display_data(self, file_path):
         data = self.adapter.load_data(file_path)
-        print(data)
+        if isinstance(data, pd.DataFrame):
+            print(data.head())
+        else:
+            for row in data:
+                print(row)
+        return data

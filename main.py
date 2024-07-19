@@ -11,10 +11,16 @@ def csv_to_json(csv_file_path, json_file_path):
     """Converts a CSV file to JSON format."""
     df = pd.read_csv(csv_file_path)
     df.to_json(json_file_path, orient="records")
-    print(f"{json_file_path}")
+    print(f"Arquivo CSV convertido para JSON: {json_file_path}")
 
 
 if __name__ == "__main__":
+
+    print("\n---------- Weather Dataset ----------")
+    loader = DataLoader("data\weather_classification_data.csv")
+    data = loader.load_data()
+    print(data.head())  # reading the first 5 rows
+
     # Loading the dataset (CSV)
     print("\n---------- Weather Dataset (CSV) ----------")
     csv_file_path = "data/weather_classification_data.csv"
