@@ -20,6 +20,7 @@ Extend the system where the output of the logger can be adapted to various forma
 
 ### Libraries required for this project:
 
+*   ABC
 *   Pandas
 *   Numpy
 *   Matplotlib
@@ -27,7 +28,6 @@ Extend the system where the output of the logger can be adapted to various forma
 *   Sklearn
 *   Streamlit
 *   Pickle
-*   Logging
 *   Unittest
 
 
@@ -41,4 +41,3 @@ The Catalog of Design Patterns - https://refactoring.guru/design-patterns/catalo
 
 Design Patterns course material - LaSalle College
 
-Logging - https://docs.python.org/3/howto/logging.html
