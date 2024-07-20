@@ -21,20 +21,13 @@ class FileAdapter(LoggerOutputAdapter):
             f.write(message + "\n")
 
 
-class LoggerAdapter:
-    def __init__(self, logger, adapter: LoggerOutputAdapter = ConsoleAdapter()):
-        self.logger = logger
-        self.adapter = adapter
-
-    def log(self, message, level="INFO"):
-        formatted_message = f"{level} - {message}"
-        self.adapter.write(formatted_message)
-
-
 class MyLogger:
-    def __init__(self, name, level="INFO"):
+    def __init__(self, name, level="INFO", adapter=None):
         self.name = name
-        self.level = level
+        self.level = level.upper()
+        self.adapter = (
+            adapter if adapter else ConsoleAdapter()
+        )  # Default to ConsoleAdapter
 
     def _format_message(self, message, level):
         return f"[{level}] {self.name}: {message}"
@@ -62,3 +55,16 @@ class MyLogger:
 
     def set_adapter(self, adapter):
         self.adapter = adapter
+
+
+class LoggerAdapter:
+    def __init__(self, logger: MyLogger, adapter: LoggerOutputAdapter = None):
+        self.logger = logger
+        if adapter:
+            self.logger.set_adapter(adapter)  # Set the adapter if provided
+
+    def log(self, message, level="INFO"):
+        levels = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+        if levels.index(level) >= levels.index(self.logger.level):
+            formatted_message = f"[{level}] {self.logger.name}: {message}"
+            self.logger.adapter.write(formatted_message)
