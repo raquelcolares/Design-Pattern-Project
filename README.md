@@ -8,7 +8,9 @@
 This project was designed to load, process, analyze multiple types of data
 from a single CSV file, and create a classification Neural Network Model, utilizing different classes and different design patterns.
 
-github repository - https://github.com/raquelcolares/Design-Pattern-Project
+*   Github repository - https://github.com/raquelcolares/Design-Pattern-Project
+
+
 
 **Project Phase 1:**
 
