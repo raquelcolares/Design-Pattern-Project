@@ -2,44 +2,18 @@ from src.data_loader import DataLoader, CsvAdapter, JsonAdapter, AdaptorFactory
 from src.data_processor import DataProcessor
 from src.data_analyzer import DataAnalyzer
 from src.data_model import DataModel
-
 import pandas as pd
-
-
-'''def csv_to_json(csv_file_path, json_file_path):
-    """Converts a CSV file to JSON format."""
-    df = pd.read_csv(csv_file_path)
-    df.to_json(json_file_path, orient="records")
-    print(f"CSV file converted to JSON: {json_file_path}")'''
 
 
 if __name__ == "__main__":
 
-    # Loading the dataset
+    # Loading and reading the dataset
     print("\n---------- Weather Dataset ----------")
-    file_path = "data/weather_classification_data.csv"
+    file_path = "data\weather_classification_data.json"
     adapter = AdaptorFactory().get_adapter(file_path)
     data= adapter.load_data(file_path)
-    print(data.head())  # Exibe as 5 primeiras linhas do CSV
+    print(data.head())  # shows the 5 first rows of the file 
 
-    """
-    # CSV to JSON
-    json_file_path = "data/weather_classification_data.json"
-    csv_to_json(csv_file_path, json_file_path)
-
-    #  (JSON)
-    print("\n---------- Weather Dataset (JSON) ----------")
-    json_adapter = JsonAdapter()
-    reader = DataReader(json_adapter)
-    data_json = reader.display_data(json_file_path)
-    print(data_json.head())
-
-    csv_adapter = CsvAdapter()
-    # Change logger adapter to file
-    csv_adapter.logger.adapter = FileAdapter("csv_adapter.log")
-    reader = DataReader(csv_adapter)
-    data = reader.display_data("data/weather_classification_data.csv")
-    """
 
     # DATA ANALYSIS
     ## Analysing the Descriptive statistics
@@ -62,6 +36,7 @@ if __name__ == "__main__":
     print("\n---------- Data Distribution Visualization ----------")
     analyser.plot_data()
 
+
     # DATA PREPROCESSING
     ## Treating missing values
     print("\n---------- Data Cleaning ----------")
@@ -73,6 +48,7 @@ if __name__ == "__main__":
     print("\n---------- Dataset Transformation ----------")
     data_transformed = processor.transform_data()
     print(data_transformed)
+
 
     # NEURAL NETWORK MODEL
     ## Creating the scaler
