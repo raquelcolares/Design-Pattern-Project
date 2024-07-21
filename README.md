@@ -8,6 +8,8 @@
 This project was designed to load, process, analyze multiple types of data
 from a single CSV file, and create a classification Neural Network Model, utilizing different classes and different design patterns.
 
+github repository - https://github.com/raquelcolares/Design-Pattern-Project
+
 **Project Phase 1:**
 
 Create a logging system where the log output can be easily redirected to specific output formats (console, file, etc.) and ensure that the logging configuration and handling are managed via a single instance (singleton).
@@ -16,6 +18,10 @@ Create a logging system where the log output can be easily redirected to specifi
 
 Extend the system where the output of the logger can be adapted to various formats (like console output, file output, or even a hypothetical network output).
 
+**Project Phase 3:**
+
+Extend the logging system to notify subscribed observers whenever a logging event occurs. This will allow multiple parts of the application to react to logs dynamically.
+ 
 
 
 ### Libraries required for this project:
