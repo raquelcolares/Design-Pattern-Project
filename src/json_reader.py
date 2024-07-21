@@ -1,14 +1,9 @@
-import json
-from src.logger import MyLogger, ConsoleAdapter
+import pandas as pd
 
 
 class JsonReader:
-    def __init__(self):
-        self.logger = MyLogger("JsonReader", "INFO", ConsoleAdapter())
-
     def read_json_data(self, file_path):
-        self.logger.info(f"Reading JSON data from {file_path}")
-        # Add the actual logic to read JSON data
-        with open(file_path, "r") as file:
-            data = json.load(file)
+        #self.logger.info("Trying to load data")
+        data = pd.read_json(file_path)
+        #self.logger.info("File loaded")
         return data

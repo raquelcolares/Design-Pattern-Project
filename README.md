@@ -21,6 +21,7 @@ Extend the system where the output of the logger can be adapted to various forma
 ### Libraries required for this project:
 
 *   ABC
+*   Pathlib
 *   Pandas
 *   Numpy
 *   Matplotlib

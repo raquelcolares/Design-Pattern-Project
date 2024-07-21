@@ -1,20 +1,12 @@
-import pandas as pd
-import pickle
 from abc import ABC, abstractmethod
-import json
-from .csv_reader import CsvReader
-from .json_reader import JsonReader
-from .logger import MyLogger, FileAdapter, LoggerAdapter
+from src.csv_reader import CsvReader
+from src.json_reader import JsonReader
+import pathlib
+#from .logger import MyLogger, FileAdapter, LoggerAdapter
 
 
-# Adapter
-## interface
-class DataAdapter(ABC):
-    @abstractmethod
-    def load_data(self, file_path):
-        pass
 
-
+"""
 # Logger Adapter
 class LoggerOutputAdapter(ABC):
     @abstractmethod
@@ -105,29 +97,61 @@ class JsonAdapter(DataAdapter):
         except Exception as e:
             self.logger.log(f"Error loading JSON data: {e}", level="ERROR")
             raise  # Re-raise the exception
+"""
 
-
-# Singleton
-class DataLoader:
+# Adaptor
+class DataLoader(ABC):
     _instance = None
-    logger = MyLogger("DataLoader")
+    #logger = MyLogger("DataLoader")
 
+    #Singleton
     def __new__(cls, file_path=None):
         if cls._instance is None:
             cls._instance = super(DataLoader, cls).__new__(cls)
-        else:
-            cls.logger.warning("The instance of DataLoader already exists")
+        #else:
+            #cls.logger.warning("The instance of DataLoader already exists")
         return cls._instance
 
     def __init__(self, file_path):
         if not hasattr(self, "_initialized"):
             self._initialized = True
             self.file_path = file_path
-        else:
-            self.logger.warning("Instance not created: DataLoader class is singleton")
+        #else:
+            #self.logger.warning("Instance not created: DataLoader class is singleton")
 
+    @abstractmethod
     def load_data(self):
-        self.logger.info("Trying to load data")
-        data = pd.read_csv(self.file_path)
-        self.logger.info("File loaded")
+        pass
+
+class CsvAdapter(DataLoader):
+    def __init__(self):
+        self.csv_reader = CsvReader()
+        
+    def load_data(self, file_path):
+        data = self.csv_reader.read_csv_data(file_path)
         return data
+
+
+class JsonAdapter(DataLoader):
+    def __init__(self):
+        self.json_reader = JsonReader()
+        
+    def load_data(self, file_path):
+        data = self.json_reader.read_json_data(file_path)
+        return data
+    
+
+# Factory
+class AdaptorFactory:
+    def __init__(self):
+        self.adapters = {
+            '.csv': CsvAdapter(),
+            '.json': JsonAdapter()
+        }
+
+    def get_adapter(self, file_path):
+        file_type = pathlib.Path(file_path).suffix
+        adapter = self.adapters.get(file_type)
+        if not adapter:
+            raise ValueError('File is not in an available format!')
+        return adapter

@@ -1,28 +1,28 @@
-from src.data_loader import DataLoader, CsvAdapter, JsonAdapter, FileAdapter
+from src.data_loader import DataLoader, CsvAdapter, JsonAdapter, AdaptorFactory
 from src.data_processor import DataProcessor
 from src.data_analyzer import DataAnalyzer
 from src.data_model import DataModel
-from src.adapter_reader import DataReader
+
 import pandas as pd
-import pickle
 
 
-def csv_to_json(csv_file_path, json_file_path):
+'''def csv_to_json(csv_file_path, json_file_path):
     """Converts a CSV file to JSON format."""
     df = pd.read_csv(csv_file_path)
     df.to_json(json_file_path, orient="records")
-    print(f"CSV file converted to JSON: {json_file_path}")
+    print(f"CSV file converted to JSON: {json_file_path}")'''
 
 
 if __name__ == "__main__":
 
-    # Loading the dataset (CSV)
-    print("\n---------- Weather Dataset (CSV) ----------")
-    csv_file_path = "data/weather_classification_data.csv"
-    loader = DataLoader(csv_file_path)
-    data_csv = loader.load_data()
-    print(data_csv.head())  # Exibe as 5 primeiras linhas do CSV
+    # Loading the dataset
+    print("\n---------- Weather Dataset ----------")
+    file_path = "data/weather_classification_data.csv"
+    adapter = AdaptorFactory().get_adapter(file_path)
+    data= adapter.load_data(file_path)
+    print(data.head())  # Exibe as 5 primeiras linhas do CSV
 
+    """
     # CSV to JSON
     json_file_path = "data/weather_classification_data.json"
     csv_to_json(csv_file_path, json_file_path)
@@ -39,6 +39,7 @@ if __name__ == "__main__":
     csv_adapter.logger.adapter = FileAdapter("csv_adapter.log")
     reader = DataReader(csv_adapter)
     data = reader.display_data("data/weather_classification_data.csv")
+    """
 
     # DATA ANALYSIS
     ## Analysing the Descriptive statistics

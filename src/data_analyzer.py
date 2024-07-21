@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+
 class DataAnalyzer:
     def __init__(self, data):
         self.data = data
@@ -22,7 +23,7 @@ class DataAnalyzer:
         return self.data.isna().sum()
     
     def plot_data(self):
-        #plt.figure(figsize=(20, 15))
+        plt.figure(figsize=(20, 15))
         for i, col in enumerate(self.data.columns,1):
             plt.subplot(4, 3, i)
             sns.histplot(x=self.data[col], bins=10, kde=True, color='green')
