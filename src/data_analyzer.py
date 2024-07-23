@@ -16,6 +16,10 @@ class DataAnalyzer:
     def get_summary_statistics(self):
         return self.data.describe()
     
+    def temperature_stats(self):
+        temp_stats = self.data["Temperature"].describe()
+        return temp_stats["min"], temp_stats["max"], temp_stats["mean"]
+    
     def dataset_shape(self):
         return self.data.shape
     
