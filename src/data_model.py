@@ -5,15 +5,17 @@ from sklearn.neural_network import MLPClassifier
 import matplotlib.pyplot as plt
 
 
-class DataModel:
 
+class DataModel:
+    
     X_train= pd.DataFrame()
     X_test= pd.DataFrame()
     y_train= pd.DataFrame()
     y_test= pd.DataFrame()
 
-    def __init__(self, data):
+    def __init__(self, data, logger):
         self.data = data
+        self.logger = logger
   
     def get_data(self):
         return self.data
@@ -47,11 +49,13 @@ class DataModel:
         return model
 
     def evaluation_metrics(self):
+        self.logger.warning("Evaluation of the Neural Network Model in progress...")
         model_fit = DataModel.neural_network_model()
         print(f"Test accuracy: {model_fit.score(DataModel.X_test, DataModel.y_test)}")
         print(f"Train accuracy: {model_fit.score(DataModel.X_train, DataModel.y_train)}")
 
     def loss_curve(self):
+        self.logger.warning("Calculation of the loss function in progress...")
         loss_curve = DataModel.neural_network_model().loss_curve_
         plt.plot(loss_curve)
         plt.show()

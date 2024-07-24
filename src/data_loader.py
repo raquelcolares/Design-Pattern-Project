@@ -63,5 +63,5 @@ class AdaptorFactory:
         file_type = pathlib.Path(file_path).suffix
         adapter = self.adapters.get(file_type)
         if not adapter:
-            raise ValueError('File is not in an available format!')
+            raise ValueError("File is not in an available format!")
         return adapter
