@@ -2,14 +2,23 @@ from src.data_loader import DataLoader, CsvAdapter, JsonAdapter, AdaptorFactory
 from src.data_processor import DataProcessor
 from src.data_analyzer import DataAnalyzer
 from src.data_model import DataModel
+from src.weather_statistics_stream import Publisher, WeatherStatisticsStream
+from src.subscribers import ConsoleSubscriber, FileSubscriber
+from src.logger import MyLogger
 import pandas as pd
 
 
 if __name__ == "__main__":
 
+    # Initializing logger instance 
+    log = MyLogger("Logger")
+    warning_sub1 = FileSubscriber()
+    log.register_WarningSubscriber(warning_sub1)
+
+
     # Loading and reading the dataset
     print("\n---------- Weather Dataset ----------")
-    file_path = "data\weather_classification_data.json"
+    file_path = "data\weather_classification_data.csv"
     adapter = AdaptorFactory().get_adapter(file_path)
     data= adapter.load_data(file_path)
     print(data.head())  # shows the 5 first rows of the file 
@@ -53,7 +62,7 @@ if __name__ == "__main__":
     # NEURAL NETWORK MODEL
     ## Creating the scaler
     print("\n---------- Scaler ----------")
-    data_model_obj = DataModel(data_transformed)
+    data_model_obj = DataModel(data_transformed, log)
     data_scaler = data_model_obj.scaler()
     print(data_scaler)
 
@@ -68,3 +77,21 @@ if __name__ == "__main__":
     ## Visualizing the Loss Curve
     print("\n---------- Loss Curve ----------")
     data_model_obj.loss_curve()
+
+
+    # PUBLISHER / SUBSCRIBER
+    ## Publisher
+    pub = WeatherStatisticsStream()
+    ## Subscriber
+    sub1 = ConsoleSubscriber()
+    sub2 = ConsoleSubscriber()
+    ## Registering subscriber
+    pub.register_subscriber(sub1)
+    pub.register_subscriber(sub2)
+    ## Getting the statistics to be publish
+    print("\n---------- Weather Temperature Publisher ----------")
+    tempMin, temMax, tempMean = analyser.temperature_stats()
+    pub.set_stats(tempMin, temMax, tempMean)
+    pub.notify_subscriber()
+
+    

@@ -24,11 +24,16 @@ class FileAdapter(LoggerOutputAdapter):
 class MyLogger:
     def __init__(self, name, level="INFO", adapter=None):
         self.name = name
+        self.ErrorSubscribers = []
+        self.WarningSubscribers = []
         self.level = level.upper()
         if adapter:
             self.adapter = adapter
         else:
             self.adapter = ConsoleAdapter()
+
+    def get_warningSubscribers(self):
+        return self.WarningSubscribers
 
     def _format_message(self, message, level):
         return f"[{level}] {self.name}: {message}"
@@ -41,9 +46,11 @@ class MyLogger:
 
     def warning(self, message):
         self.adapter.write(self._format_message(message, "WARNING"))
+        self.notify_WarningSubscriber(self._format_message(message, "WARNING"))
 
     def error(self, message):
         self.adapter.write(self._format_message(message, "ERROR"))
+        self.notify_ErrorSubscriber(self._format_message(message, "ERROR"))
 
     def fatal(self, message):
         self.adapter.write(self._format_message(message, "FATAL"))
@@ -57,3 +64,22 @@ class MyLogger:
     def set_adapter(self, adapter):
         self.adapter = adapter
 
+    def register_ErrorSubscriber(self, ErrorSubscriber):
+        if ErrorSubscriber not in self.ErrorSubscribers:
+            self.ErrorSubscribers.append(ErrorSubscriber)
+        else:
+            print(f"Error Observer {ErrorSubscriber} already exists!")
+    
+    def register_WarningSubscriber(self, WarningSubscriber):
+        if WarningSubscriber not in self.WarningSubscribers:
+            self.WarningSubscribers.append(WarningSubscriber)
+        else:
+            print(f"Warning Observer {WarningSubscriber} already exists!")
+    
+    def notify_ErrorSubscriber(self, message):
+        for ErrorSubscriber in self.ErrorSubscribers:
+            ErrorSubscriber.update(message)
+    
+    def notify_WarningSubscriber(self, message):
+        for WarningSubscriber in self.WarningSubscribers:
+            WarningSubscriber.update(message)
