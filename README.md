@@ -43,7 +43,7 @@ Extend the logging system to notify subscribed observers whenever a logging even
 ### Diagrams before applying Design Patterns
 
 <p align="center">
-    <img width="500" src="https://github.com/raquelcolares/Design-Pattern-Project/blob/main/pictures-diagrams-project/Project-Scope.png">
+    <img width="900" src="https://github.com/raquelcolares/Design-Pattern-Project/blob/main/pictures-diagrams-project/Project-Scope.png">
 </p>
 
 
