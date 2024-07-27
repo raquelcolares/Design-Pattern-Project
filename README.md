@@ -40,6 +40,9 @@ Extend the logging system to notify subscribed observers whenever a logging even
 *   Unittest
 
 
+### Diagrams before applying Design Patterns
+
+![project-scope](Project-Scope.png)
 
 
 ### References: 
