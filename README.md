@@ -53,12 +53,12 @@ The classes below illustrate the project scope before the use of Design Patterns
 
 
 <p align="center">
-    <img width="900" src="https://github.com/raquelcolares/Design-Pattern-Project/blob/main/pictures-diagrams-project/Singleton-Adaptor-Factory.png">
+    <img width="800" src="https://github.com/raquelcolares/Design-Pattern-Project/blob/main/pictures-diagrams-project/Singleton-Adaptor-Factory.png">
 </p>
 
 
 <p align="center">
-    <img width="900" src="https://github.com/raquelcolares/Design-Pattern-Project/blob/main/pictures-diagrams-project/Observer.png">
+    <img width="700" src="https://github.com/raquelcolares/Design-Pattern-Project/blob/main/pictures-diagrams-project/Observer.png">
 </p>
 
 
