@@ -55,7 +55,7 @@ The project has four classes, that together are responsable to open, analyze, pr
 
 On this project, it implements the designs Singleton, Adaptor, Factory and Observer. The purpose of implementing Design Pattern is, to solve a problem that occurs many times in a way that the solution can be reused, saving time and money. 
 
-* Singleton, Adaptor and Factory Patterns
+*  **Singleton, Adaptor and Factory Patterns**
 
 The class DataLoader is responsable for loading the dataset that will be used by other classes for the classification of the weather. However, the DataLoader previously implemented on the project scope was recognizing only a csv format.
 
@@ -73,7 +73,7 @@ As the AdaptorFactory class is responsible for the creation of the object, the S
 </p>
 
 
-* Observer Pattern
+*  **Observer Pattern**
 
 The purpose of the Observer design pattern applied to this project, is to notify the registered subscribers (observers), to receive updates of the temperature statistics, like minimum, maximum and average temperature. 
 
@@ -89,7 +89,7 @@ The ConsoleSubscriber class implements the subscriber aspect of the pattern. It 
 </p>
 
 
-* Logger
+*  **Logger**
 
 The MyLogger class is implementing a logger functionality, which records messages in a console or a file, using the adaptor attribute. There is many types of level messages; as info, debug, warning, error, fatal, and trace. 
 
