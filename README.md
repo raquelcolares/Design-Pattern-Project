@@ -42,8 +42,28 @@ Extend the logging system to notify subscribed observers whenever a logging even
 
 ### Diagrams before applying Design Patterns
 
+The classes below illustrate the project scope before the use of Design Patterns.
+
 <p align="center">
     <img width="900" src="https://github.com/raquelcolares/Design-Pattern-Project/blob/main/pictures-diagrams-project/Project-Scope.png">
+</p>
+
+
+### Diagrams after applying Design Patterns
+
+
+<p align="center">
+    <img width="900" src="https://github.com/raquelcolares/Design-Pattern-Project/blob/main/pictures-diagrams-project/Singleton-Adaptor-Factory.png">
+</p>
+
+
+<p align="center">
+    <img width="900" src="https://github.com/raquelcolares/Design-Pattern-Project/blob/main/pictures-diagrams-project/Observer.png">
+</p>
+
+
+<p align="center">
+    <img width="900" src="https://github.com/raquelcolares/Design-Pattern-Project/blob/main/pictures-diagrams-project/Logger.png">
 </p>
 
 
